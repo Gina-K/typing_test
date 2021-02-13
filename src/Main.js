@@ -6,7 +6,7 @@ import {
 } from "reactstrap";
 
 import SampleTextArea from "./components/SampleTextArea";
-import TypingTextArea from "./TypingTextArea";
+import TypingTextArea from "./components/TypingTextArea";
 import PerformanceIndicator from "./components/PerformanceIndicator";
 
 function Main() {
