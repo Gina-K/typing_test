@@ -12,6 +12,14 @@ const boilerplateText = "The API is not responding, so you can only type this ex
 function ContextProvider({children}) {
     const [textForTyping, setTextForTyping] = useState(boilerplateText);
 
+    useEffect(downloadData, []);
+
+    function downloadData() {
+        fetch("https://baconipsum.com/api/?type=all-meat&sentences=8")
+            .then(res => res.json())
+            .then(data => setTextForTyping(data))
+    }
+
     return (
         <Context.Provider value={{
             textForTyping,
