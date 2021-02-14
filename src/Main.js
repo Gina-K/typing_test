@@ -8,6 +8,7 @@ import {
 import SampleTextArea from "./components/SampleTextArea";
 import TypingTextArea from "./components/TypingTextArea";
 import PerformanceIndicator from "./components/PerformanceIndicator";
+import ErrorMessage from "./components/ErrorMessage";
 import {Context} from "./Context";
 
 function Main() {
@@ -41,6 +42,7 @@ function Main() {
             <Row className="pt-3 pb-3">
                 <Col>
                     <TypingTextArea/>
+                    <ErrorMessage />
                 </Col>
             </Row>
         </Container>
