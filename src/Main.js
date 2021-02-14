@@ -15,9 +15,9 @@ function Main() {
 
     return (
         <Container className="mb-2">
-            <Row className="pt-3 pb-3">
+            <Row className="pt-4 pb-3">
                 <Col>
-                    <p>
+                    <p className="text-muted">
                         Just begin typing the text—and the counter will activate automatically. Good luck!
                     </p>
                 </Col>

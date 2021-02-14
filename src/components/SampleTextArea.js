@@ -14,17 +14,26 @@ function SampleTextArea() {
         typedChars,
         currentChar,
         charsToType,
-        isError
+        isError,
+        isAllTyped
     } = useContext(Context);
+
+    let charBackground = () => {
+        if (!isAllTyped) {
+            return isError ? "#dc3545" : "#28a745"
+        } else {
+            return "transparent";
+        }
+    };
 
 
 
     return (
-        <Card>
+        <Card style={{fontSize: 18, backgroundColor: "gainsboro"}}>
             <CardBody>
-                <CardText>
+                <CardText >
                     <span style={{color: "gray"}}>{typedChars}</span>
-                    <span style={isError ? {color: "red"} : {color: "blueviolet"}}>{currentChar}</span>
+                    <span className="p-1" style={{color: "white", fontWeight: "bold", backgroundColor: charBackground()}}>{currentChar}</span>
                     <span style={{color: "black"}}>{charsToType}</span>
                 </CardText>
             </CardBody>

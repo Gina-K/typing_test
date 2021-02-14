@@ -11,7 +11,7 @@ function TypingTextArea() {
     const {userInput} = useContext(Context);
 
     return (
-        <Card>
+        <Card outline color="secondary" style={{fontSize: 18, minHeight: "12rem"}}>
             <CardBody>
                 <CardText>
                     {userInput}

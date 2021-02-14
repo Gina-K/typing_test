@@ -81,8 +81,6 @@ function ContextProvider({children}) {
                 ((updatedTypedChars.length * 100) / updatedUserInput.length).toFixed(0)
             );
         }
-
-
     });
 
     return (
@@ -94,7 +92,8 @@ function ContextProvider({children}) {
             userInput,
             setUserInput,
             accuracy,
-            isError
+            isError,
+            isAllTyped
         }}>
             {children}
         </Context.Provider>
