@@ -22,6 +22,7 @@ function ContextProvider({children}) {
     const [userInput, setUserInput] = useState("");
     const [accuracy, setAccuracy] = useState("0");
     const [isAllTyped, setIsAllTyped] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const currentTime = () => new Date().getTime();
 
@@ -59,6 +60,7 @@ function ContextProvider({children}) {
             }
 
             if (key === currentChar) {
+                setIsError(false);
                 let durationInMin = (currentTime() - startTime) / 60000;
 
                 setCharCount(charCount + 1);
@@ -71,6 +73,8 @@ function ContextProvider({children}) {
 
                 updatedCharsToType = charsToType.substring(1);
                 setCharsToType(updatedCharsToType);
+            } else {
+                setIsError(true);
             }
 
             setAccuracy(
@@ -89,7 +93,8 @@ function ContextProvider({children}) {
             charsToType,
             userInput,
             setUserInput,
-            accuracy
+            accuracy,
+            isError
         }}>
             {children}
         </Context.Provider>
