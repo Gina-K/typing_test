@@ -11,7 +11,6 @@ const boilerplateText = "The API is not responding, so you can only type this ex
     "a greater artist than now."
 
 function ContextProvider({children}) {
-    // const textForTyping = "123456789";
     const [textForTyping, setTextForTyping] = useState("");
     const [startTime, setStartTime] = useState(0);
     const [charCount, setCharCount] = useState(0);

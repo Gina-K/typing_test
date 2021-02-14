@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
 import {Badge} from "reactstrap";
 
+import {Context} from "../Context";
+
 function PerformanceIndicator ({type, value}) {
+    const {isAllTyped} = useContext(Context);
     let unit;
     switch (type) {
         case "Speed":
@@ -17,7 +20,7 @@ function PerformanceIndicator ({type, value}) {
 
     return (
         <h3>
-            <Badge color="light">{type}: {value} {unit}</Badge>
+            <Badge color={isAllTyped ? "success" : "light"}>{type}: {value} {unit}</Badge>
         </h3>
     );
 }
