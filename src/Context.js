@@ -1,4 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {
+    useEffect,
+    useState
+} from "react";
+
 import useKeyPress from "./lib/useKeyPress";
 
 const Context = React.createContext();
@@ -52,7 +56,6 @@ function ContextProvider({children}) {
             let updatedCharsToType = charsToType;
             const updatedUserInput = userInput + key;
             setUserInput(updatedUserInput);
-
 
             if (!startTime) {
                 setStartTime(currentTime());

@@ -42,7 +42,7 @@ function Main() {
             <Row className="pt-3 pb-3">
                 <Col>
                     <TypingTextArea/>
-                    <ErrorMessage />
+                    <ErrorMessage/>
                 </Col>
             </Row>
         </Container>

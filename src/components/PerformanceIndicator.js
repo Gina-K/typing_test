@@ -4,7 +4,7 @@ import {Badge} from "reactstrap";
 
 import {Context} from "../Context";
 
-function PerformanceIndicator ({type, value}) {
+function PerformanceIndicator({type, value}) {
     const {isAllTyped} = useContext(Context);
     let unit;
     switch (type) {

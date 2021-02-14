@@ -5,7 +5,6 @@ import {Context} from "../Context";
 function ErrorMessage() {
     const imgSrc = process.env.PUBLIC_URL + "img/nelson.png";
     const {isError} = useContext(Context);
-
     const style = {
         display: isError ? "block" : "none",
         position: "absolute",
@@ -15,7 +14,7 @@ function ErrorMessage() {
         width: "200px"
     }
 
-    return(
+    return (
         <img src={imgSrc} style={style} alt="Ha-ha!"/>
     );
 }

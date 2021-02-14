@@ -1,6 +1,4 @@
-import React, {
-    useContext
-} from "react";
+import React, {useContext} from "react";
 import {
     Card,
     CardBody,
@@ -26,14 +24,16 @@ function SampleTextArea() {
         }
     };
 
-
-
     return (
         <Card style={{fontSize: 18, backgroundColor: "gainsboro"}}>
             <CardBody>
-                <CardText >
+                <CardText>
                     <span style={{color: "gray"}}>{typedChars}</span>
-                    <span className="p-1" style={{color: "white", fontWeight: "bold", backgroundColor: charBackground()}}>{currentChar}</span>
+                    <span className="p-1" style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        backgroundColor: charBackground()
+                    }}>{currentChar}</span>
                     <span style={{color: "black"}}>{charsToType}</span>
                 </CardText>
             </CardBody>
