@@ -10,14 +10,21 @@ const boilerplateText = "The API is not responding, so you can only type this ex
     "a greater artist than now."
 
 function ContextProvider({children}) {
-    const [textForTyping, setTextForTyping] = useState(boilerplateText);
+    const [textForTyping, setTextForTyping] = useState("");
 
     useEffect(downloadData, []);
 
     function downloadData() {
         fetch("https://baconipsum.com/api/?type=all-meat&sentences=8")
             .then(res => res.json())
-            .then(data => setTextForTyping(data))
+            .then(data => {
+                let tempStr = JSON.stringify(data[0]);
+                setTextForTyping(tempStr.substring(1, tempStr.length - 1))
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                setTextForTyping(boilerplateText);
+            });
     }
 
     return (
