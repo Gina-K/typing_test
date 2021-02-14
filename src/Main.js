@@ -11,7 +11,7 @@ import PerformanceIndicator from "./components/PerformanceIndicator";
 import {Context} from "./Context";
 
 function Main() {
-    const {cpm} = useContext(Context);
+    const {cpm, accuracy} = useContext(Context);
 
     return (
         <Container className="mb-2">
@@ -28,7 +28,7 @@ function Main() {
                     <PerformanceIndicator type="Speed" value={cpm}/>
                 </Col>
                 <Col xs="6" className="d-flex justify-content-center">
-                    <PerformanceIndicator type="Accuracy" value="97"/>
+                    <PerformanceIndicator type="Accuracy" value={accuracy}/>
                 </Col>
             </Row>
 

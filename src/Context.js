@@ -19,6 +19,8 @@ function ContextProvider({children}) {
     const [typedChars, setTypedChars] = useState("");
     const [currentChar, setCurrentChar] = useState("");
     const [charsToType, setCharsToType] = useState("");
+    const [userInput, setUserInput] = useState("");
+    const [accuracy, setAccuracy] = useState(0);
 
     const currentTime = () => new Date().getTime();
 
@@ -45,6 +47,8 @@ function ContextProvider({children}) {
     useKeyPress(key => {
         let updatedTypedChars = typedChars;
         let updatedCharsToType = charsToType;
+        const updatedUserInput = userInput + key;
+        setUserInput(updatedUserInput);
 
         if (!startTime) {
             setStartTime(currentTime());
@@ -64,6 +68,10 @@ function ContextProvider({children}) {
             updatedCharsToType = charsToType.substring(1);
             setCharsToType(updatedCharsToType);
         }
+
+        setAccuracy(
+            ((updatedTypedChars.length * 100) / updatedUserInput.length).toFixed(2)
+        );
     });
 
     return (
@@ -71,7 +79,10 @@ function ContextProvider({children}) {
             cpm,
             typedChars,
             currentChar,
-            charsToType
+            charsToType,
+            userInput,
+            setUserInput,
+            accuracy
         }}>
             {children}
         </Context.Provider>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import {
     Card,
     CardBody,
@@ -6,13 +6,14 @@ import {
 } from "reactstrap";
 
 import useKeyPress from "../lib/useKeyPress";
+import {Context} from "../Context";
 
 function TypingTextArea() {
-    const [userInput, setUserInput] = useState("");
+    const {userInput, setUserInput} = useContext(Context);
 
-    useKeyPress(key => {
-        setUserInput(userInput + key);
-    })
+    // useKeyPress(key => {
+    //     setUserInput(userInput + key);
+    // })
 
     return (
         <Card>
