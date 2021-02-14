@@ -15,6 +15,7 @@ function TypingTextArea() {
             <CardBody>
                 <CardText>
                     {userInput}
+                    <span style={{color: "#17a2b8"}}>|</span>
                 </CardText>
             </CardBody>
         </Card>
