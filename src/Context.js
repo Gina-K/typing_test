@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import useKeyPress from "./lib/useKeyPress";
 
 const Context = React.createContext();
 
@@ -10,7 +11,16 @@ const boilerplateText = "The API is not responding, so you can only type this ex
     "a greater artist than now."
 
 function ContextProvider({children}) {
+    // const textForTyping = "123456789";
     const [textForTyping, setTextForTyping] = useState("");
+    const [startTime, setStartTime] = useState(0);
+    const [charCount, setCharCount] = useState(0);
+    const [cpm, setCpm] = useState("0.00");
+    const [typedChars, setTypedChars] = useState("");
+    const [currentChar, setCurrentChar] = useState("");
+    const [charsToType, setCharsToType] = useState("");
+
+    const currentTime = () => new Date().getTime();
 
     useEffect(downloadData, []);
 
@@ -27,9 +37,41 @@ function ContextProvider({children}) {
             });
     }
 
+    useEffect(() => {
+        setCurrentChar(textForTyping.charAt(0));
+        setCharsToType(textForTyping.substr(1));
+    }, [textForTyping]);
+
+    useKeyPress(key => {
+        let updatedTypedChars = typedChars;
+        let updatedCharsToType = charsToType;
+
+        if (!startTime) {
+            setStartTime(currentTime());
+        }
+
+        if (key === currentChar) {
+            let durationInMin = (currentTime() - startTime) / 60000;
+
+            setCharCount(charCount + 1);
+            setCpm(((charCount + 1) / durationInMin).toFixed(2));
+
+            updatedTypedChars += currentChar;
+            setTypedChars(updatedTypedChars);
+
+            setCurrentChar(charsToType.charAt(0));
+
+            updatedCharsToType = charsToType.substring(1);
+            setCharsToType(updatedCharsToType);
+        }
+    });
+
     return (
         <Context.Provider value={{
-            textForTyping,
+            cpm,
+            typedChars,
+            currentChar,
+            charsToType
         }}>
             {children}
         </Context.Provider>

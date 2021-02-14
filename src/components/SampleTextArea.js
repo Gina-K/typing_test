@@ -1,7 +1,5 @@
 import React, {
-    useContext,
-    useEffect,
-    useState
+    useContext
 } from "react";
 import {
     Card,
@@ -10,34 +8,13 @@ import {
 } from "reactstrap";
 
 import {Context} from "../Context";
-import useKeyPress from "../lib/useKeyPress";
 
 function SampleTextArea() {
-    const {textForTyping} = useContext(Context);
-    const [typedChars, setTypedChars] = useState("");
-    const [currentChar, setCurrentChar] = useState("");
-    const [charsToType, setCharsToType] = useState("");
-
-    useEffect(() => {
-        setCurrentChar(textForTyping.charAt(0));
-        setCharsToType(textForTyping.substr(1));
-    }, [textForTyping]);
-
-    useKeyPress(key => {
-        let updatedTypedChars = typedChars;
-        let updatedCharsToType = charsToType;
-
-        if (key === currentChar) {
-            updatedTypedChars += currentChar;
-            setTypedChars(updatedTypedChars);
-
-            setCurrentChar(charsToType.charAt(0));
-
-            updatedCharsToType = charsToType.substring(1);
-            setCharsToType(updatedCharsToType);
-        }
-    });
-
+    const {
+        typedChars,
+        currentChar,
+        charsToType
+    } = useContext(Context);
 
     return (
         <Card>
