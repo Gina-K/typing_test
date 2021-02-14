@@ -2,7 +2,7 @@
 
 Try it—and check your typing speed (in chars per minute) and accuracy!
 
-[Working version](https://)
+[Working version](https://Gina-K.github.io/typing_test)
 
 *Note: This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).*
 
