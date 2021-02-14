@@ -15,12 +15,13 @@ function ContextProvider({children}) {
     const [textForTyping, setTextForTyping] = useState("");
     const [startTime, setStartTime] = useState(0);
     const [charCount, setCharCount] = useState(0);
-    const [cpm, setCpm] = useState("0.00");
+    const [cpm, setCpm] = useState("0");
     const [typedChars, setTypedChars] = useState("");
     const [currentChar, setCurrentChar] = useState("");
     const [charsToType, setCharsToType] = useState("");
     const [userInput, setUserInput] = useState("");
-    const [accuracy, setAccuracy] = useState(0);
+    const [accuracy, setAccuracy] = useState("0");
+    const [isAllTyped, setIsAllTyped] = useState(false);
 
     const currentTime = () => new Date().getTime();
 
@@ -45,33 +46,39 @@ function ContextProvider({children}) {
     }, [textForTyping]);
 
     useKeyPress(key => {
-        let updatedTypedChars = typedChars;
-        let updatedCharsToType = charsToType;
-        const updatedUserInput = userInput + key;
-        setUserInput(updatedUserInput);
+        if (!isAllTyped) {
+            setIsAllTyped(charsToType.length === 0);
+            let updatedTypedChars = typedChars;
+            let updatedCharsToType = charsToType;
+            const updatedUserInput = userInput + key;
+            setUserInput(updatedUserInput);
 
-        if (!startTime) {
-            setStartTime(currentTime());
+
+            if (!startTime) {
+                setStartTime(currentTime());
+            }
+
+            if (key === currentChar) {
+                let durationInMin = (currentTime() - startTime) / 60000;
+
+                setCharCount(charCount + 1);
+                setCpm(((charCount + 1) / durationInMin).toFixed(0));
+
+                updatedTypedChars += currentChar;
+                setTypedChars(updatedTypedChars);
+
+                setCurrentChar(charsToType.charAt(0));
+
+                updatedCharsToType = charsToType.substring(1);
+                setCharsToType(updatedCharsToType);
+            }
+
+            setAccuracy(
+                ((updatedTypedChars.length * 100) / updatedUserInput.length).toFixed(0)
+            );
         }
 
-        if (key === currentChar) {
-            let durationInMin = (currentTime() - startTime) / 60000;
 
-            setCharCount(charCount + 1);
-            setCpm(((charCount + 1) / durationInMin).toFixed(2));
-
-            updatedTypedChars += currentChar;
-            setTypedChars(updatedTypedChars);
-
-            setCurrentChar(charsToType.charAt(0));
-
-            updatedCharsToType = charsToType.substring(1);
-            setCharsToType(updatedCharsToType);
-        }
-
-        setAccuracy(
-            ((updatedTypedChars.length * 100) / updatedUserInput.length).toFixed(2)
-        );
     });
 
     return (
