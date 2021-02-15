@@ -17,7 +17,7 @@ the results.
 
 Hope you'll have some fun! :)
 
-## How to run this project on your owm machine
+## How to run this project on your own machine
 
 1. Clone or download this repository.
 
@@ -40,4 +40,4 @@ Hope you'll have some fun! :)
 
 5. Run the project:
    
-   `npm run dev`
+   `npm start`
